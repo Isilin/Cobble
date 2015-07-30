@@ -1,0 +1,38 @@
+#
+#	Copyright 2015 Pierre Casati
+#
+#    This file is part of IsilinMVC.
+#
+#    IsilinMVC is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    IsilinMVC is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with IsilinMVC.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+# ===== Sécurise l'accès aux fichiers .htaccess et autres fichiers de configuration. =====
+<filesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+ Order Allow,Deny
+ Deny from all
+</filesMatch>
+
+# ===== Désactive la signature du serveur apache. =====
+ServerSignature Off
+
+# ===== Désactive l'indexage de fichier et active le suivi des liens symboliques. =====
+Options -Indexes +FollowSymLinks
+
+# ===== Règles de réécritures =====
+# ===== Images, feuilles de style et scripts js sont ignorés. =====
+# ===== Chaque requête restante est redirigée sur le fichier index.php. =====
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !\.(css|jpg|png|gif)$
+RewriteRule ^(.*)$ index.php/$1 [L]
