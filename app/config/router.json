@@ -1,0 +1,6 @@
+{
+    "root": "dev.isilinsas",
+    "ways": {
+            "/": "home"
+    }
+}

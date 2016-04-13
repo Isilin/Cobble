@@ -41,6 +41,7 @@
 				}
 				fclose($file);
 			}
+			exit();
 		}
 		
 		public static function taggedLog($tagIn, $stringIn)

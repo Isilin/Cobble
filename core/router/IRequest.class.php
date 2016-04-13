@@ -1,5 +1,5 @@
 <?php
-	namespace core\front;
+	namespace core\router;
 
 	interface IRequest
 	{

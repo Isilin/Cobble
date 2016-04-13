@@ -1,5 +1,5 @@
 <?php
-	namespace core\front;
+	namespace core\util;
 
 	interface IBuilder
 	{

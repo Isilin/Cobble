@@ -2,7 +2,7 @@
 	use core\Log;
 	use core\Contract;
 	use core\Autoloader;
-	use core\front\FrontController;
+	use core\router\Router;
 	
 	require_once '../core/Log.class.php';
 	Log::setMode(BROWSER);
@@ -13,11 +13,11 @@
 	Autoloader::register();
 
 	Contract::initialize(true);
-	
 
 	try {
-		$frontController = new FrontController();
-		$frontController->process();
+		$router = new Router();
+		$router->parseRequest();
+		$router->processRequest();
 	} catch (\Exception $e) {
 		echo $e->getMessage();
 	}
