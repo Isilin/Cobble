@@ -3,5 +3,5 @@
 
 	interface IScanner
 	{
-		public function scan(): bool;
+		public function scan(IRequest $request): bool;
 	}

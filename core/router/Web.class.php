@@ -3,6 +3,7 @@
 
 	use core\Log;
 	use core\util\JsonBuilder;
+	use core\Contract;
 
 	class Web
 	{

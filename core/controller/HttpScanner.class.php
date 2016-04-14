@@ -5,23 +5,19 @@
 
 	class HttpScanner implements IScanner
 	{
-		private $requestURI;
-		private $get = array();
-		private $post = array();
+		private $request;
 
 		public function __construct()
 		{
-			$this->requestURI = $_SERVER['REQUEST_URI'];
-			$this->get = $_GET;
-			$this->get= $_POST;
+			$this->requestURI = null;
 
 			Contract::assert(is_string($this->requestURI), 'This variable should be a string.');
-			Contract::assert(is_array($this->get), 'This variable should be an array.');
-			Contract::assert(is_array($this->post), 'This variable should be an array.');
 		}
 
-		public function scan(): bool
+		public function scan(IRequest $request): bool
 		{
+			$this->request = $request;
+
 			$isValid = true;
 			$isValid = $isValid and (strpos($this->requestURI, '?') == false) and (strpos($this->requestURI, '&') == false);
 			if ($isValid) {

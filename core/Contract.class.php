@@ -25,4 +25,9 @@
 		{
 			assert($expressionIn .'; //*'. $messageIn);
 		}
+
+		public static function assertIsInstanceOf($object, $type)
+		{
+			assert('$object instanceof $type ; //* This variable should be a ' . $type . '.');
+		}
 	}

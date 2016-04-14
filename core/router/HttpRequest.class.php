@@ -6,7 +6,6 @@
 	class HttpRequest implements IRequest
 	{
 		private $method;
-		private $service;
 		private $resource;
 		private $parameters;
 
@@ -19,19 +18,13 @@
 				$this->method = 'GET';
 			}
 
-			$this->service = substr($_SERVER['REQUEST_URI'], 1);
+			$this->resource = substr($_SERVER['REQUEST_URI'], 1);
 
-			if(strpos($this->service, '/')) {
-				$this->resource = substr($this->service, strpos($this->service, '/')+1);
-				if(strpos($this->resource, '?')) {
-					$this->resource = substr($this->resource, 0, strpos($this->resource, '?'));
-				}
-
-				$this->service = substr($this->service, 0, strpos($this->service, '/'));
-			} else {
-				$this->resource = "";
+			if(strpos($this->resource, '?')) {
+				$this->resource = substr($this->resource, 0, strpos($this->resource, '?'));
 			}
-			$this->service = "/" . $this->service;
+
+			$this->resource = '/' . $this->resource;
 
 			if($this->method == 'GET') {
 				$this->parameters = $_GET;
@@ -48,7 +41,13 @@
 
 		public function getService(): string
 		{
-			return $this->service;
+			if ($this->resource == '/') {
+				return '';
+			} else {
+				$service = substr($this->resource, 1);
+				$service = substr($service, 0, strpos($service, '/'));
+				return $service;
+			}
 		}
 
 		public function getResource(): string

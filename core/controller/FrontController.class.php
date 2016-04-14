@@ -1,5 +1,5 @@
 <?php
-	namespace core\front;
+	namespace core\controller;
 	
 	use core\Log;
 
