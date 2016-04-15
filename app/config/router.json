@@ -1,6 +1,15 @@
 {
     "root": "dev.isilinsas",
-    "ways": {
-            "/": "home"
-    }
+    "ways": [
+        {
+            "name": "home",
+            "path": "/",
+            "controller": "app:HomeController:index"
+        },
+        {
+        	"name": "404",
+        	"path": "/404",
+        	"controller": "app:Error:error404"
+        }
+    ]
 }

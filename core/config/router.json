@@ -1,7 +1,10 @@
 {
-    "root": "dev.isilinsas",
-    "ways": {
-            "/": "dashboard",
-            "/404": "error"
-    }
+    "root": "dev.isilinsas/dashboard",
+    "ways": [
+        {
+            "name": "home",
+            "path": "/",
+            "controller": "core:HomeController:index"
+        }
+    ]
 }

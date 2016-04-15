@@ -24,7 +24,7 @@
 				$this->resource = substr($this->resource, 0, strpos($this->resource, '?'));
 			}
 
-			$this->resource = '/' . $this->resource;
+			$this->resource = $_SERVER['SERVER_NAME'] . '/' . $this->resource;
 
 			if($this->method == 'GET') {
 				$this->parameters = $_GET;
@@ -37,17 +37,6 @@
 		public function getMethod(): string
 		{
 			return $this->method;
-		}
-
-		public function getService(): string
-		{
-			if ($this->resource == '/') {
-				return '';
-			} else {
-				$service = substr($this->resource, 1);
-				$service = substr($service, 0, strpos($service, '/'));
-				return $service;
-			}
 		}
 
 		public function getResource(): string

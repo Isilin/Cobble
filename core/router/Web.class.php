@@ -7,39 +7,41 @@
 
 	class Web
 	{
-		private $root = "";
 		private $ways = null;
 
 		public function __construct(string $file)
 		{
+			$this->ways = array();
+			$this->addWays($file);
+		}
+
+		public function addWays(string $file) {
+
 			$builder = new JsonBuilder();
-			$content = $builder->loadContent("../core/config/router.json");
+			$content = $builder->loadContent($file);
 			if(!array_key_exists('root', $content)) {
 				Log::exception('The config file should contain a root member.');
 			}
 			if(!array_key_exists('ways', $content)) {
 				Log::exception('The config file should contain a ways member.');
 			}
-
-			$this->root = $content['root'];
-			$this->ways = $content['ways'];
-		}
-
-		public function existsWay(string $way) : bool
-		{
-			return array_key_exists($way, $this->ways);
-		}
-
-		public function getView(string $way) : string
-		{
-			if(!array_key_exists(way, $this->way)) {
-				Log::exception('THis way doesn\'t exist. You should have to check before getting the view.');
+			foreach ($content['ways'] as $value) {
+				$way = new Way($value, $content['root']);
+				$this->ways[$way->getPath()] = $way;
 			}
-			return $this->ways[$way];
 		}
 
-		public function getRoot() : string
+		public function existsWay(string $way)
 		{
-			return $this->root;
+			$found = false;
+			while(!$found && list($key, $value) = each($this->ways)) {
+				$found = ($value->getPath() == $way);
+			}
+			return $found;
+		}
+
+		public function getWay(string $way)
+		{
+			return $this->ways[$way];
 		}
 	}

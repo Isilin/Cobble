@@ -9,40 +9,30 @@
 	class Router
 	{
 		private $request = null;
-		private $coreWays = null;
-		private $appWays = null;
+		private $web = null;
 
 		public function __construct()
 		{
-			$this->coreWays = new Web("../core/config/router.json");
-			$this->appWays = new Web("../app/config/router.json");
-
-			
+			$this->web = new Web("../core/config/router.json");
+			$this->web->addWays("../app/config/router.json");
 		}
 
 		public function parseRequest()
 		{
 			$this->request = new HttpRequest();
+			if(substr($this->request->getResource(), -1) != '/') {
+				header('Location: http://' . $this->request->getResource() . '/');
+			}
 		}
 
 		public function processRequest()
 		{
-			if($this->request->getService() == 'admin') {
-				if($this->coreWays->existsWay($this->request->getResource())) {
-					$controller = new FrontController();
-					$view = $this->coreWays->getView($this->request->getResource());
-					$controller->process($request, $view);
-				} else {
-					header('Location: /404?resource=' . $this->request->getResource());
-				}
+			if($this->web->existsWay($this->request->getResource())) {
+				$controller = new FrontController();
+				print('ok</br>');
+				$controller->process($this->request, $this->web->getWay($this->request->getResource()));
 			} else {
-				if($this->appWays->existsWay($this->request->getResource())) {
-					$controller = new FrontController();
-					$view = $this->appWays->getView($this->request->getResource());
-					$controller->process($request, $view);
-				} else {
-					header('Location: /404?resource=' . $this->request->getResource());
-				}
+				//header('Location: /404?resource=' . $this->request->getResource());
 			}
 		}
 	}
