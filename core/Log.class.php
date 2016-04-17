@@ -16,7 +16,9 @@
 		public static function info($stringIn)
 		{
 			if (Log::$mode == 0) {
-				echo '[' . date('Y-m-d H:i:s') . '][INFO] ' . $stringIn;
+				echo '<span class="log_info">';
+				echo '<i>[' . date('Y-m-d H:i:s') . ']</i><b>[INFO]</b> ' . $stringIn;
+				echo '</span>';
 			} else {
 				$file = fopen('../core/log.log', 'a');
 				if ($file) {
@@ -31,7 +33,7 @@
 		public static function exception($stringIn)
 		{
 			if (Log::$mode == 0) {
-				throw new \Exception('[' . date('Y-m-d H:i:s') . '][ERROR] ' . $stringIn);
+				throw new \Exception('<span class ="log_exception"><i>[' . date('Y-m-d H:i:s') . ']</i><b>[ERROR]</b> ' . $stringIn . '</span>');
 			} else {
 				$file = fopen('../core/log.log', 'a');
 				if ($file) {
@@ -47,7 +49,9 @@
 		public static function taggedLog($tagIn, $stringIn)
 		{
 			if (Log::$mode == 0) {
-				echo '[' . date('Y-m-d H:i:s') . '][' . $tagIn . '] ' . $stringIn;
+				echo '<span class="log_tagged">';
+				echo '<i>[' . date('Y-m-d H:i:s') . ']</i><b>[' . $tagIn . ']</b> ' . $stringIn;
+				echo '</span>';
 			} else {
 				$file = fopen('../core/log.log', 'a');
 				if ($file) {

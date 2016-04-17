@@ -16,7 +16,6 @@
 		}
 
 		public function addWays(string $file) {
-
 			$builder = new JsonBuilder();
 			$content = $builder->loadContent($file);
 			if(!array_key_exists('root', $content)) {
@@ -29,6 +28,7 @@
 				$way = new Way($value, $content['root']);
 				$this->ways[$way->getPath()] = $way;
 			}
+			Log::info('Ways loaded from ' . $file . '.</br>');
 		}
 
 		public function existsWay(string $way)

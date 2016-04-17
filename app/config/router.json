@@ -7,9 +7,9 @@
             "controller": "app:HomeController:index"
         },
         {
-        	"name": "404",
-        	"path": "/404",
-        	"controller": "app:Error:error404"
+            "name": "404",
+            "path": "/404/",
+            "controller": "app:ErrorController:error404"
         }
     ]
 }

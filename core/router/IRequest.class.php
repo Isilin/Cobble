@@ -3,9 +3,9 @@
 
 	interface IRequest
 	{
-		public function getMethod(): string;
+		public abstract function getMethod(): string;
 
-		public function getResource(): string;
+		public abstract function getResource(): string;
 
-		public function getParameter(string $keyIn): string;
+		public abstract function getParameter(string $keyIn): string;
 	}
