@@ -41,7 +41,17 @@
 	} catch (\Exception $e) {
 		echo $e->getMessage();
 	}
-	
+
+	use Utils\SsString;
+	$myString = new SsString("coucou");
+	print $myString->get() . '<br/>';
+	$myString->erase(4, 1);
+	print $myString->get() . '<br/>';
+	$myStringBis = new SsString(array("bisou", "nours"), ",");
+	print $myStringBis->get() . '<br/>';
+	SsString::test(1);
+	SsString::test('hoho');
+
 	Log::taggedLog('END', '<br>');
 
 	echo '

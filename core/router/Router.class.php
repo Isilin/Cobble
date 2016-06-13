@@ -33,7 +33,7 @@
 				$controller = new FrontController();
 				$controller->process($this->request, $this->web->getWay($this->request->getResource()));
 			} else {
-				header('Location: /404/?resource=' . $this->request->getResource());
+				//header('Location: /404/?resource=' . $this->request->getResource());
 			}
 		}
 	}
