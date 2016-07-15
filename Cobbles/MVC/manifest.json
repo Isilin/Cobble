@@ -1,0 +1,8 @@
+{
+    "name": "MVC",
+    "version": "0.0.1",
+    "author": "Pierre Casati",
+    "requirements": [],
+    "PHP": "7.0.x",
+    "PHP-extensions": []
+}
