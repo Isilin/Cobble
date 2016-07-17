@@ -5,6 +5,7 @@
     {
         protected $id = "";
         protected bool $active = true;
+        protected $autoloader = null;
 
         public function __construct()
         {
